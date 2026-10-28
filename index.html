@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS100 Portfolio Checkpoint</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+
+    <div class="container my-5">
+        <h2 class="mb-4 text-center">Add New Portfolio Item</h2>
+        
+        <form id="item-form" class="card p-4 shadow-sm">
+            
+            <div class="mb-3">
+                <label for="portfolio-id" class="form-label">Portfolio ID / Name</label>git 
+                <input type="text" class="form-control" id="portfolio-id" name="portfolioId" >
+            </div>
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" >
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <input type="text" class="form-control" id="type" name="type">
+            </div>
+
+            <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" class="form-control" id="date" name="date">
+            </div>
+
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <input type="text" class="form-control" id="role" name="role" >
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" ></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="skills" class="form-label">Skills </label>
+                <input type="text" class="form-control" id="skills" name="skills" >
+            </div>
+
+            <div class="mb-3">
+                <label for="whatIid" class="form-label">Reflection: What I did</label>
+                <input type="text" class="form-control" id="whatIid" name="whatIid" >
+            </div>
+
+            <div class="mb-3">
+                <label for="whatILearned" class="form-label">Reflection: What I learned</label>
+                <input type="text" class="form-control" id="whatILearned" name="whatILearned" >
+            </div>
+
+            <div class="mb-3">
+                <label for="challenge" class="form-label">Reflection: Challenge</label>
+                <input type="text" class="form-control" id="challenge" name="challenge" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="nextStep" class="form-label">Reflection: Next step</label>
+                <input type="text" class="form-control" id="nextStep" name="nextStep" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="evidence" class="form-label">Evidence (URL)</label>
+                <input type="url" class="form-control" id="evidence" name="evidence" >
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Portfolio Item</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
