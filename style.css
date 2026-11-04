@@ -92,7 +92,6 @@ textarea.form-control {
 
 #btn-create-portfolio:hover {
     transform: translateY(-5px);
-    box-init: unset;
     box-shadow: 0 20px 40px rgba(79, 70, 229, 0.25) !important;
 }
 
