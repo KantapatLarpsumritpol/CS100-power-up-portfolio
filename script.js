@@ -2,7 +2,36 @@ const form = document.querySelector("#create-portfolio-form");
  
 form.addEventListener("submit", function (event) {
     event.preventDefault();
- 
+    
+    // Profile Validation
+    const displayName = document.querySelector("#portfolio-name").value.trim();
+    const whatEnjoy = document.querySelector("#portfolio-enjoy").value.trim();
+    const whatTried = document.querySelector("#portfolio-tried").value.trim();
+    const whatCurious = document.querySelector("#portfolio-curious").value.trim();
+
+    const error = document.querySelector("#profile-error");
+
+    if (displayName === "") {
+        error.textContent = "Please enter your name.";
+        return;
+    }
+    if (whatEnjoy === "") {
+        error.textContent = "Please enter your what you enjoy.";
+        return;
+    }
+    if (whatTried === "") {
+        error.textContent = "Please enter what you've tried.";
+        return;
+    }
+    if (whatCurious === "") {
+        error.textContent = "Please enter what you're curious about.";
+        return;
+    }
+
+    console.log("Profile Validiation Passed!! Still running.");
+
+    error.textContent = "";
+
     // 1. Read values from the HTML form
     const data = new FormData(form);
  
