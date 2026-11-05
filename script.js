@@ -14,12 +14,43 @@ form.addEventListener("submit", function (event) {
         whatCurious: data.get("whatCurious").trim(),
         items: []   // Portfolio Items will be pushed in here later
     };
+
+    addPortfolio(portfolio);
+    
 });
 
 //------------Done--------------
 
+const portfolios = []; 
 
-function displayCard(item) {
+function addPortfolio(portfolio){
+    portfolios.push(portfolio); // เก็บ portfolioที่สร้างมา
+    displayCard(portfolio);
+}
+
+const list = document.getElementById("portfolio-list");
+
+//card
+function displayCard(portfolio) {
+    const card = document.createElement("div"); 
+    card.className = "portfolio-card card p-3 mb-3" 
+
+function addText(tag,text) {
+    const element = document.createElement(tag);
+    element.textContent = text;
+    card.appendChild(element);
+}
+
+addText("h1" , portfolio.displayName);
+addText("p" , "What I Enjoy: " + portfolio.whatEnjoy);
+addText("p" , "What I've Tried: " + portfolio.whatTried);
+addText("p" , "What I'm Curious About: " + portfolio.whatCurious);
+
+list.appendChild(card); // การ์ดใหม่จะอยู่ต่อการ์ดเก่า
+}
+
+// item รอแก้ไข
+/* function displayCard(item) {
     const container = document.getElementById("card-container");
 
     const card = document.createElement("div");
@@ -50,4 +81,4 @@ function displayCard(item) {
     addText("p", "Evidence: " + item.evidence.join(", "));
 
     card.appendChild(content);
-}
+} */
