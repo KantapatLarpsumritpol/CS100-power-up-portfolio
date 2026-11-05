@@ -47,7 +47,7 @@ form.addEventListener("submit", function (event) {
     addPortfolio(portfolio);
     form.reset();
     bootstrap.Modal.getOrCreateInstance(document.getElementById("createPortfolioModal")).hide();
-    
+
 });
 
 //------------Done--------------
@@ -99,37 +99,3 @@ function addPortfolio(portfolio){
     li.appendChild(a);
     navList.appendChild(li);
 }
-
-// item รอแก้ไข
-/* function displayCard(item) {
-    const container = document.getElementById("card-container");
-
-    const card = document.createElement("div");
-    card.className = "col-md-6 col-lg-4";
-
-    const content = document.createElement("div");
-    content.className = "card p-3 shadow-sm h-100";
-
-    function addText(tag, text){
-        const element = document.createElement(tag);
-        element.textContent = text ?? "";
-        content.appendChild(element);
-    }
-
-    addText("h1", item.title);
-    addText("p", "Type: " + item.type);
-    addText("p", "Date: " + item.date);
-    addText("p", "Role: " + item.role);
-    addText("p", "Description: " + item.description);
-    addText("p", "Skills: " + item.skills);
-
-    addText("h1", "Reflection");
-    addText("p", "What I Did: " + item.reflection.WhatIid);
-    addText("p", "What I Lerned: " + item.reflection.whatILearned);
-    addText("p", "Challenge: " + item.reflection.challenge);
-    addText("p", "Next Step: " + item.reflection.nextStep);
-
-    addText("p", "Evidence: " + item.evidence.join(", "));
-
-    card.appendChild(content);
-} */
