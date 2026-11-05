@@ -45,6 +45,8 @@ form.addEventListener("submit", function (event) {
     };
 
     addPortfolio(portfolio);
+    form.reset();
+    bootstrap.Modal.getOrCreateInstance(document.getElementById("createPortfolioModal")).hide();
     
 });
 
@@ -54,35 +56,33 @@ const portfolios = [];
 
 function addPortfolio(portfolio){
     portfolios.push(portfolio); // เก็บ portfolioที่สร้างมา
-    displayCard(portfolio);
-    addNavItem(portfolio);
-}
 
-const list = document.getElementById("portfolio-list");
+    const list = document.getElementById("portfolio-list");
 
-//card
-function displayCard(portfolio) {
-    const card = document.createElement("div"); 
-    card.className = "portfolio-card card p-3 mb-3" 
+    //card
+    const card = document.createElement("div");
+    card.className = "portfolio-card";
 
-function addText(tag,text) {
-    const element = document.createElement(tag);
-    element.textContent = text;
-    card.appendChild(element);
-}
+    function addText(tag,text) {
+        const element = document.createElement(tag);
+        element.textContent = text;
+        card.appendChild(element);
+    }
 
-addText("h1" , portfolio.displayName);
-addText("p" , "What I Enjoy: " + portfolio.whatEnjoy);
-addText("p" , "What I've Tried: " + portfolio.whatTried);
-addText("p" , "What I'm Curious About: " + portfolio.whatCurious);
+    addText("h1" , portfolio.displayName);
+    addText("p" , "What I Enjoy: " + portfolio.whatEnjoy);
+    addText("p" , "What I've Tried: " + portfolio.whatTried);
+    addText("p" , "What I'm Curious About: " + portfolio.whatCurious);
 
-list.appendChild(card); // การ์ดใหม่จะอยู่ต่อการ์ดเก่า
-}
+    list.appendChild(card); // การ์ดใหม่จะอยู่ต่อการ์ดเก่า
 
-// navbar
-const navList = document.getElementById("portfolio-nav-links");
+    card.addEventListener("click", function (){
+        openPortfolio(portfolio);
+    });
 
-function addNavItem(portfolio) {
+    // navbar
+    const navList = document.getElementById("portfolio-nav-links");
+
     const li = document.createElement("li");
     li.className = "nav-item";
 
