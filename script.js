@@ -26,6 +26,7 @@ const portfolios = [];
 function addPortfolio(portfolio){
     portfolios.push(portfolio); // เก็บ portfolioที่สร้างมา
     displayCard(portfolio);
+    addNavItem(portfolio);
 }
 
 const list = document.getElementById("portfolio-list");
@@ -47,6 +48,27 @@ addText("p" , "What I've Tried: " + portfolio.whatTried);
 addText("p" , "What I'm Curious About: " + portfolio.whatCurious);
 
 list.appendChild(card); // การ์ดใหม่จะอยู่ต่อการ์ดเก่า
+}
+
+// navbar
+const navList = document.getElementById("portfolio-nav-links");
+
+function addNavItem(portfolio) {
+    const li = document.createElement("li");
+    li.className = "nav-item";
+
+    const a = document.createElement("a");
+    a.className = "nav-link";
+    a.href = "#";
+    a.textContent = portfolio.displayName;
+
+    a.addEventListener("click", function (event){
+        event.preventDefault();
+        openPortfolio(portfolio);
+    });
+
+    li.appendChild(a);
+    navList.appendChild(li);
 }
 
 // item รอแก้ไข
