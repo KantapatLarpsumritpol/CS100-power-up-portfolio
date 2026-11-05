@@ -25,6 +25,10 @@ h2 {
     transition: 0.3s ease;
 }
 
+.form-error {
+    color: #f02032;
+}
+
 .form-label {
     font-weight: 650;
     font-size: 0.95rem;
