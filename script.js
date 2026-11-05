@@ -1,27 +1,23 @@
-const form = document.querySelector("#item-form");
-form.addEventListener("submit", function(event) {
+const form = document.querySelector("#create-portfolio-form");
+ 
+form.addEventListener("submit", function (event) {
     event.preventDefault();
-
+ 
+    // 1. Read values from the HTML form
     const data = new FormData(form);
-    // Javascript object
-    const item = {
-        id: data.get("portfolioId"),
-        title: data.get("title"),
-        type: data.get("type"),
-        date: data.get("date"),
-        role: data.get("role"),
-        description: data.get("description"),
-        skills: data.get("skills"),
-        reflection: {
-            whatIDid: data.get("whatIid"),
-            whatILearned: data.get("whatILearned"),
-            challenge: data.get("challenge"),
-            nextStep: data.get("nextStep")
-        },
-        evidence: [data.get("evidence")]
+ 
+    // 2. Create a JavaScript object
+    const portfolio = {
+        displayName: data.get("displayName").trim(),
+        whatEnjoy: data.get("whatEnjoy").trim(),
+        whatTried: data.get("whatTried").trim(),
+        whatCurious: data.get("whatCurious").trim(),
+        items: []   // Portfolio Items will be pushed in here later
     };
-    displayCard(item);
-})
+});
+
+//------------Done--------------
+
 
 function displayCard(item) {
     const container = document.getElementById("card-container");
