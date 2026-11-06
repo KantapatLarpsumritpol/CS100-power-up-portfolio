@@ -16,7 +16,7 @@ form.addEventListener("submit", function (event) {
         return;
     }
     if (whatEnjoy === "") {
-        error.textContent = "Please enter your what you enjoy.";
+        error.textContent = "Please enter what you enjoy.";
         return;
     }
     if (whatTried === "") {
