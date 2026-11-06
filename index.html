@@ -73,34 +73,34 @@
             
             <div class="mb-3">
                 <label for="title" class="form-label fw-semibold">Title (ชื่อผลงาน)</label>
-                <input type="text" class="form-control" id="title" name="title" required placeholder="ระบุชื่อผลงานหรือโปรเจกต์">
+                <input type="text" class="form-control" id="title" name="title" placeholder="ระบุชื่อผลงานหรือโปรเจกต์">
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="type" class="form-label fw-semibold">Type (ประเภทผลงาน)</label>
-                    <input type="text" class="form-control" id="type" name="type" required placeholder="เช่น Web Application, Assignment">
+                    <input type="text" class="form-control" id="type" name="type" placeholder="เช่น Web Application, Assignment">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="date" class="form-label fw-semibold">Date (วันที่ดำเนินการ)</label>
-                    <input type="date" class="form-control" id="date" name="date" required>
+                    <input type="date" class="form-control" id="date" name="date">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="role" class="form-label fw-semibold">Role (บทบาทหน้าที่)</label>
-                    <input type="text" class="form-control" id="role" name="role" required placeholder="เช่น Frontend Developer, Lead">
+                    <input type="text" class="form-control" id="role" name="role" placeholder="เช่น Frontend Developer, Lead">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="skills" class="form-label fw-semibold">Skills (ทักษะที่ใช้)</label>
-                    <input type="text" class="form-control" id="skills" name="skills" required placeholder="เช่น HTML, CSS, JavaScript (คั่นด้วยจุลภาค)">
+                    <input type="text" class="form-control" id="skills" name="skills" placeholder="เช่น HTML, CSS, JavaScript (คั่นด้วยจุลภาค)">
                 </div>
             </div>
 
             <div class="mb-3">
                 <label for="description" class="form-label fw-semibold">Description (รายละเอียดผลงาน)</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required placeholder="อธิบายภาพรวมและเป้าหมายของผลงาน"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3" placeholder="อธิบายภาพรวมและเป้าหมายของผลงาน"></textarea>
             </div>
 
             <hr class="my-4 text-muted">
@@ -108,28 +108,30 @@
 
             <div class="mb-3">
                 <label for="whatIDid" class="form-label fw-semibold">What I did (สิ่งที่ได้ทำ)</label>
-                <input type="text" class="form-control" id="whatIDid" name="whatIDid" required placeholder="งานหรือหน้าที่ที่คุณรับผิดชอบจริง">
+                <input type="text" class="form-control" id="whatIDid" name="whatIDid" placeholder="งานหรือหน้าที่ที่คุณรับผิดชอบจริง">
             </div>
 
             <div class="mb-3">
                 <label for="whatILearned" class="form-label fw-semibold">What I learned (สิ่งที่ได้เรียนรู้)</label>
-                <input type="text" class="form-control" id="whatILearned" name="whatILearned" required placeholder="ความรู้หรือทักษะใหม่ที่ได้รับ">
+                <input type="text" class="form-control" id="whatILearned" name="whatILearned" placeholder="ความรู้หรือทักษะใหม่ที่ได้รับ">
             </div>
 
             <div class="mb-3">
                 <label for="challenge" class="form-label fw-semibold">Challenge (อุปสรรคที่พบ)</label>
-                <input type="text" class="form-control" id="challenge" name="challenge" required placeholder="ปัญหาที่เจอและวิธีรับมือ">
+                <input type="text" class="form-control" id="challenge" name="challenge" placeholder="ปัญหาที่เจอและวิธีรับมือ">
             </div>
 
             <div class="mb-3">
                 <label for="nextStep" class="form-label fw-semibold">Next step (แนวทางต่อยอด)</label>
-                <input type="text" class="form-control" id="nextStep" name="nextStep" required placeholder="สิ่งที่จะนำไปพัฒนาต่อในอนาคต">
+                <input type="text" class="form-control" id="nextStep" name="nextStep" placeholder="สิ่งที่จะนำไปพัฒนาต่อในอนาคต">
             </div>
 
             <div class="mb-4">
                 <label for="evidence" class="form-label fw-semibold">Evidence (ลิงก์หลักฐาน / URL)</label>
-                <input type="url" class="form-control" id="evidence" name="evidence" required placeholder="https://github.com/your-repo">
+                <input type="url" class="form-control" id="evidence" name="evidence" placeholder="https://github.com/your-repo">
             </div>
+
+            <p class="form-error mb-2" id="item-error" role="alert"></p>
 
             <button type="submit" class="btn btn-primary py-3 fw-bold rounded-3 shadow-sm">Submit Item</button>
         </form>

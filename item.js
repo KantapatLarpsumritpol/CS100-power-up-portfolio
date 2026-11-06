@@ -85,6 +85,77 @@ function showHome() {
 itemForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
+    // Item Validation
+    const title = document.querySelector("#title").value.trim();
+    const type = document.querySelector("#type").value.trim();
+    const date = document.querySelector("#date").value.trim();
+    const role = document.querySelector("#role").value.trim();
+    const skills = document.querySelector("#skills").value.trim();
+    const description = document.querySelector("#description").value.trim();
+    const whatIDid = document.querySelector("#whatIDid").value.trim();
+    const whatILearned = document.querySelector("#whatILearned").value.trim();
+    const challenge = document.querySelector("#challenge").value.trim();
+    const nextStep = document.querySelector("#nextStep").value.trim();
+    const evidence = document.querySelector("#evidence").value.trim();
+
+    const error = document.querySelector("#item-error");
+
+    // Check for blank input
+    if (title === "") {
+        error.textContent = "Please enter the item title.";
+        return;
+    }
+    if (type === "") {
+        error.textContent = "Please enter the item type.";
+        return;
+    }
+    if (date === "") {
+        error.textContent = "Please enter the item date.";
+        return;
+    }
+    if (role === "") {
+        error.textContent = "Please enter your role.";
+        return;
+    }
+    if (skills === "") {
+        error.textContent = "Please enter the skills you used.";
+        return;
+    }
+    if (description === "") {
+        error.textContent = "Please enter the item description.";
+        return;
+    }
+    if (whatIDid === "") {
+        error.textContent = "Please describe what you did.";
+        return;
+    }
+    if (whatILearned === "") {
+        error.textContent = "Please share what you learned.";
+        return;
+    }
+    if (challenge === "") {
+        error.textContent = "Please describe the challenges you faced.";
+        return;
+    }
+    if (nextStep === "") {
+        error.textContent = "Please enter your next steps.";
+        return;
+    }
+    if (evidence === "") {
+        error.textContent = "Please provide an evidence link.";
+        return;
+    }
+
+    // Check URL
+    if (!evidence.startsWith("http://") && !evidence.startsWith("https://")) {
+        error.textContent = "Evidence link must start with http:// or https://";
+        return; 
+    }
+
+    console.log("Item Validiation Passed!! Still running.")
+
+    error.textContent = "";
+
     const data = new FormData(itemForm);
 
     const item = {
