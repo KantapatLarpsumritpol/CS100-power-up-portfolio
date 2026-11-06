@@ -99,3 +99,9 @@ function addPortfolio(portfolio){
     li.appendChild(a);
     navList.appendChild(li);
 }
+
+document.querySelector("#home-link")
+.addEventListener("click" , function(event){
+    event.preventDefault();
+    showHome();
+});
