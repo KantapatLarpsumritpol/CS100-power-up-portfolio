@@ -54,8 +54,45 @@ form.addEventListener("submit", function (event) {
 
 const portfolios = []; 
 
+const PORTFOLIO_STORAGE_KEY = "cs100-power-up-portfolios";
+
+function savePortfolios() {
+    // Do not replace saved data with an empty initial state.
+    if (portfolios.length === 0) return;
+    try {
+        localStorage.setItem(PORTFOLIO_STORAGE_KEY, JSON.stringify(portfolios));
+    } catch (error) {
+        console.warn("Unable to save portfolios to LocalStorage.", error);
+    }
+}
+
+function loadPortfolios() {
+    let savedData;
+    try {
+        savedData = localStorage.getItem(PORTFOLIO_STORAGE_KEY);
+    } catch (error) {
+        console.warn("Unable to read portfolios from LocalStorage.", error);
+        return;
+    }
+    if (!savedData) return;
+
+    try {
+        const savedPortfolios = JSON.parse(savedData);
+        if (!Array.isArray(savedPortfolios)) return;
+        savedPortfolios.forEach(function (portfolio) {
+            if (!portfolio || typeof portfolio !== "object" ||
+                typeof portfolio.displayName !== "string") return;
+            if (!Array.isArray(portfolio.items)) portfolio.items = [];
+            addPortfolio(portfolio);
+        });
+    } catch (error) {
+        console.warn("Saved portfolio data is invalid JSON.", error);
+    }
+}
+
 function addPortfolio(portfolio){
     portfolios.push(portfolio); // เก็บ portfolioที่สร้างมา
+    savePortfolios();
 
     const list = document.getElementById("portfolio-list");
 
@@ -105,3 +142,5 @@ document.querySelector("#home-link")
     event.preventDefault();
     showHome();
 });
+
+loadPortfolios();

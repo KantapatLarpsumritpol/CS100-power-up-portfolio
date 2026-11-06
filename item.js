@@ -178,6 +178,7 @@ itemForm.addEventListener("submit", function(event) {
     };
 
     current.items.push(item);
+    savePortfolios();
     renderItem();
     itemForm.reset();
     formContainer.hidden = true;
