@@ -47,6 +47,10 @@ function renderItem(){
         const card = document.createElement("div");
         card.className = "card-item"
 
+        addText(card, "h5", item.title, "fw-bold mb-1")
+        addText(card, "p", item.type + " • " + item.date + " • " + item.role, "text-muted small mb-2");
+        addText(card, "p", item.description, "mb-2");
+
         const skillBox = document.createElement("div");
         skillBox.className = "mb-2"
         item.skills.forEach(function(skill) {
@@ -76,3 +80,34 @@ function showHome() {
     homeView.hidden = false;
     detailView.hidden = true;
 }
+
+// submit form item
+itemForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const data = new FormData(itemForm);
+
+    const item = {
+        title: data.get("title").trim(),
+        type: data.get("type").trim(),
+        date: data.get("date"),
+        role: data.get("role").trim(),
+        
+        skills: data.get("skills")
+            .split(",")
+            .map(function (s) { return s.trim(); })
+            .filter(function (s) { return s !== ""; }),
+       
+        description: data.get("description").trim(),
+        whatIDid: data.get("whatIDid").trim(),
+        whatILearned: data.get("whatILearned").trim(),
+        challenge: data.get("challenge").trim(),
+        nextStep: data.get("nextStep").trim(),
+        evidence: data.get("evidence").trim()
+    };
+
+    current.items.push(item);
+    renderItem();
+    itemForm.reset();
+    formContainer.hidden = true;
+});
