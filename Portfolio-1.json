@@ -1,0 +1,59 @@
+{
+  "id": "portfolio001",
+  "displayName": "Mint",
+  "whatEnjoy": "การพัฒนาเว็บไซต์ และการออกแบบหน้าจอที่ใช้งานง่าย",
+  "whatTried": "สร้างเว็บ Responsive ด้วย HTML, CSS และ Bootstrap และใช้ Git/GitHub ทำงานแบบ Issue-driven",
+  "whatCurious": "JavaScript และหลักการออกแบบ UX เพื่อทำเว็บไซต์ที่ใช้งานง่ายสำหรับผู้ใช้จริง",
+  "items": [
+    {
+      "id": "item001",
+      "title": "CS100 A2: Individual Responsive Learning Portfolio",
+      "type": "Course Assignment",
+      "date": "2026-10-11",
+      "role": "Individual Developer",
+      "description": "ปรับปรุงเว็บไซต์ Learning Portfolio จาก A1 ให้เป็นเว็บไซต์หน้าเดียวที่ responsive โดยใช้ Bootstrap ผ่าน CDN ร่วมกับ custom CSS จัดหน้า About Me และ My Portfolio ใหม่ด้วย Bootstrap Grid และ Flexbox พัฒนาด้วย Issue-driven workflow และ deploy ผ่าน GitHub Pages",
+      "skills": [
+        "HTML",
+        "CSS",
+        "Bootstrap Grid",
+        "Flexbox",
+        "Responsive Web Design",
+        "Git/GitHub",
+        "GitHub Issues",
+        "GitHub Pages"
+      ],
+      "reflection": {
+        "whatIDid": "วางแผนงานเป็น Issue ย่อย แล้วพัฒนาทีละส่วน ได้แก่ โครงสร้างหน้าเว็บ navbar, About Me, Portfolio Items และ footer จากนั้นทดสอบบนจอ desktop และ mobile ก่อน commit และปิด Issue ทุกครั้ง",
+        "whatILearned": "เข้าใจว่า Bootstrap ไม่ใช่แค่การใส่ stylesheet แต่ต้องเลือกใช้ grid, flex และ utility class ให้เหมาะกับแต่ละส่วน และได้เรียนรู้ breakpoint ของ Bootstrap",
+        "challenge": "การจัด layout ให้ดูดีทั้งบนจอใหญ่และจอเล็ก และการ override สไตล์ของ Bootstrap แก้ไขโดยเปิดดูด้วย DevTools โหมดมือถือ แล้วปรับทีละจุดพร้อมทดสอบซ้ำ",
+        "nextStep": "ปรับปรุงเรื่อง accessibility เช่น ความคมชัดของสีและ alt text และเรียนรู้ JavaScript เพิ่มเติมเพื่อทำ filter ผลงานตามประเภทหรือทักษะ"
+      },
+      "evidence": [
+        "https://example.com/a2-learning-portfolio/repository"
+      ]
+    },
+    {
+      "id": "item002",
+      "title": "Intro to Git & GitHub Workshop",
+      "type": "Activity",
+      "date": "2026-09-20",
+      "role": "Participant",
+      "description": "เข้าร่วมเวิร์กช็อปพื้นฐาน Git และ GitHub ของชมรมคอมพิวเตอร์ ฝึกสร้าง repository, commit และ push งานด้วยตัวเอง",
+      "skills": [
+        "Git",
+        "GitHub",
+        "Version Control",
+        "Communication"
+      ],
+      "reflection": {
+        "whatIDid": "ทำตามวิทยากรทีละขั้น สร้าง repository ทดลอง commit และ push ไฟล์ขึ้น GitHub พร้อมถามคำถามเมื่อติดขัด",
+        "whatILearned": "เข้าใจว่า commit แต่ละครั้งคือจุดบันทึกงาน และการเขียน commit message ที่ชัดเจนช่วยให้ย้อนดูงานได้ง่าย",
+        "challenge": "ตอนแรกสับสนระหว่างคำสั่ง add, commit และ push จึงจดลำดับขั้นไว้และลองทำซ้ำหลังจบกิจกรรมจนจำได้",
+        "nextStep": "อยากฝึกทำงานร่วมกับเพื่อนด้วย branch และ pull request"
+      },
+      "evidence": [
+        "https://example.com/git-workshop/certificate"
+      ]
+    }
+  ]
+}

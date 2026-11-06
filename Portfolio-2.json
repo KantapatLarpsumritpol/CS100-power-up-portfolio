@@ -1,0 +1,54 @@
+{
+  "id": "portfolio002",
+  "displayName": "Pun",
+  "whatEnjoy": "Solving puzzles and writing small programs",
+  "whatTried": "Python basics and a small team project using Git and GitHub Issues",
+  "whatCurious": "Web development and how to build apps that people actually use",
+  "items": [
+    {
+      "id": "item003",
+      "title": "Number Guessing Game",
+      "type": "Course Assignment",
+      "date": "2026-08-28",
+      "role": "Programmer",
+      "description": "Wrote a small Python game where the computer picks a secret number and gives hints until the player guesses it.",
+      "skills": [
+        "Python",
+        "Problem Solving",
+        "Debugging"
+      ],
+      "reflection": {
+        "whatIDid": "Wrote the game loop, the hint messages and a counter for the number of guesses.",
+        "whatILearned": "How loops and conditions work together, and how to test a program with different inputs.",
+        "challenge": "An infinite loop appeared when the player typed text instead of a number. I traced it with print statements and added a check that asks again when the input is not a number.",
+        "nextStep": "Add a high-score list and difficulty levels."
+      },
+      "evidence": [
+        "https://example.com/pun/number-guessing-game"
+      ]
+    },
+    {
+      "id": "item004",
+      "title": "Library Book Tracker (Group Mini Project)",
+      "type": "Course Project",
+      "date": "2026-10-12",
+      "role": "Team Member",
+      "description": "Worked in a team of four to plan a small web page for tracking borrowed library books, and built the form and the book list section.",
+      "skills": [
+        "HTML",
+        "JavaScript",
+        "Git",
+        "Teamwork"
+      ],
+      "reflection": {
+        "whatIDid": "Built the book form, wrote the code that shows the list and committed my work to the team repository.",
+        "whatILearned": "How to split tasks with GitHub Issues and pull the latest changes before editing.",
+        "challenge": "A merge conflict happened when two of us edited the same file. We compared both versions together, kept the correct lines and agreed to pull before editing from then on.",
+        "nextStep": "Add a due-date reminder and save the list in the browser."
+      },
+      "evidence": [
+        "https://example.com/pun/library-book-tracker"
+      ]
+    }
+  ]
+}
