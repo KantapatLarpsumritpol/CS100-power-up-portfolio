@@ -18,11 +18,18 @@ h2 {
     margin-bottom: 30px !important;
 }
 
+
+
+
 #create-portfolio-form {
     background: rgba(255, 255, 255, 0.96);
     border: none;
     border-radius: 20px;
     transition: 0.3s ease;
+}
+
+#create-portfolio-form .mb-3 {
+    margin-bottom: 22px !important;
 }
 
 .form-error {
@@ -63,9 +70,8 @@ textarea.form-control {
     min-height: 100px;
 }
 
-#create-portfolio-form .mb-3 {
-    margin-bottom: 22px !important;
-}
+
+
 
 .btn-primary {
     background: linear-gradient(135deg, #4f46e5, #7c3aed);
@@ -99,14 +105,107 @@ textarea.form-control {
     box-shadow: 0 20px 40px rgba(79, 70, 229, 0.25) !important;
 }
 
+
+
+
+#portfolio-container {
+    margin-bottom: 20px;
+}
+
+.profile-box {
+    background: #ffffff; 
+    border-radius: 16px;
+    padding: 25px 30px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    border: 3px solid #d9b2f0; 
+    transition: all 0.3s ease;
+}
+
+
+.portfolio-card {
+    background: hsl(0, 0%, 100%);
+    border-radius: 16px;
+    padding: 25px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(184, 187, 199, 0.6);
+    height: 100%;
+    margin-top: 20px; 
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(79, 70, 229, 0.15);
+    border-color: #a5b4fc;
+}
+
+.portfolio-card h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #312e81;
+    margin-bottom: 12px;
+}
+
+.portfolio-card p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.col-item {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.card-item {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 22px;
+    width: 100%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+    transition: all 0.25s ease;
+}
+
+.card-item:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-item a {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #4f46e5;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.card-item a:hover {
+    background: #c7d2fe;
+}
+
+
+
+
 /* Tablet */
 @media (max-width: 768px) {
     .container {
-        max-width: 95%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     h2 {
         font-size: 1.7rem;
+    }
+
+    .profile-box {
+        padding: 20px;
     }
 }
 
