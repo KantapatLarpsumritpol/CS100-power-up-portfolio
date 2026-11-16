@@ -1,3 +1,4 @@
+const API_BASE_URL = "";
 const form = document.querySelector("#create-portfolio-form");
  
 form.addEventListener("submit", function (event) {
@@ -56,37 +57,38 @@ const portfolios = [];
 
 const PORTFOLIO_STORAGE_KEY = "cs100-power-up-portfolios";
 
-function savePortfolios() {
-    // Do not replace saved data with an empty initial state.
+async function savePortfolios() {
     if (portfolios.length === 0) return;
     try {
-        localStorage.setItem(PORTFOLIO_STORAGE_KEY, JSON.stringify(portfolios));
+        const response = await fetch(`${API_BASE_URL}/portfolios`, {
+            method: "POST", // หรือใช้ PUT ตามที่ตกลงกับเพื่อน Backend
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(portfolios)
+        });
+        if (!response.ok) throw new Error("Failed to save to server");
     } catch (error) {
-        console.warn("Unable to save portfolios to LocalStorage.", error);
+        console.warn("Unable to save portfolios to AWS server.", error);
     }
 }
 
-function loadPortfolios() {
-    let savedData;
+async function loadPortfolios() {
     try {
-        savedData = localStorage.getItem(PORTFOLIO_STORAGE_KEY);
-    } catch (error) {
-        console.warn("Unable to read portfolios from LocalStorage.", error);
-        return;
-    }
-    if (!savedData) return;
-
-    try {
-        const savedPortfolios = JSON.parse(savedData);
+        const response = await fetch(`${API_BASE_URL}/portfolios`);
+        if (!response.ok) throw new Error("Failed to load from server");
+        
+        const savedPortfolios = await response.json();
         if (!Array.isArray(savedPortfolios)) return;
+        
         savedPortfolios.forEach(function (portfolio) {
-            if (!portfolio || typeof portfolio !== "object" ||
+            if (!portfolio || typeof portfolio !== "object" || 
                 typeof portfolio.displayName !== "string") return;
             if (!Array.isArray(portfolio.items)) portfolio.items = [];
             addPortfolio(portfolio);
         });
     } catch (error) {
-        console.warn("Saved portfolio data is invalid JSON.", error);
+        console.warn("Unable to load portfolios from AWS server.", error);
     }
 }
 
