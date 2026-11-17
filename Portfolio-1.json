@@ -22,15 +22,11 @@
         "GitHub Issues",
         "GitHub Pages"
       ],
-      "reflection": {
-        "whatIDid": "วางแผนงานเป็น Issue ย่อย แล้วพัฒนาทีละส่วน ได้แก่ โครงสร้างหน้าเว็บ navbar, About Me, Portfolio Items และ footer จากนั้นทดสอบบนจอ desktop และ mobile ก่อน commit และปิด Issue ทุกครั้ง",
-        "whatILearned": "เข้าใจว่า Bootstrap ไม่ใช่แค่การใส่ stylesheet แต่ต้องเลือกใช้ grid, flex และ utility class ให้เหมาะกับแต่ละส่วน และได้เรียนรู้ breakpoint ของ Bootstrap",
-        "challenge": "การจัด layout ให้ดูดีทั้งบนจอใหญ่และจอเล็ก และการ override สไตล์ของ Bootstrap แก้ไขโดยเปิดดูด้วย DevTools โหมดมือถือ แล้วปรับทีละจุดพร้อมทดสอบซ้ำ",
-        "nextStep": "ปรับปรุงเรื่อง accessibility เช่น ความคมชัดของสีและ alt text และเรียนรู้ JavaScript เพิ่มเติมเพื่อทำ filter ผลงานตามประเภทหรือทักษะ"
-      },
-      "evidence": [
-        "https://example.com/a2-learning-portfolio/repository"
-      ]
+      "whatIDid": "วางแผนงานเป็น Issue ย่อย แล้วพัฒนาทีละส่วน ได้แก่ โครงสร้างหน้าเว็บ navbar, About Me, Portfolio Items และ footer จากนั้นทดสอบบนจอ desktop และ mobile ก่อน commit และปิด Issue ทุกครั้ง",
+      "whatILearned": "เข้าใจว่า Bootstrap ไม่ใช่แค่การใส่ stylesheet แต่ต้องเลือกใช้ grid, flex และ utility class ให้เหมาะกับแต่ละส่วน และได้เรียนรู้ breakpoint ของ Bootstrap",
+      "challenge": "การจัด layout ให้ดูดีทั้งบนจอใหญ่และจอเล็ก และการ override สไตล์ของ Bootstrap แก้ไขโดยเปิดดูด้วย DevTools โหมดมือถือ แล้วปรับทีละจุดพร้อมทดสอบซ้ำ",
+      "nextStep": "ปรับปรุงเรื่อง accessibility เช่น ความคมชัดของสีและ alt text และเรียนรู้ JavaScript เพิ่มเติมเพื่อทำ filter ผลงานตามประเภทหรือทักษะ",
+      "evidence": "https://example.com/a2-learning-portfolio/repository"
     },
     {
       "id": "item002",
@@ -45,15 +41,11 @@
         "Version Control",
         "Communication"
       ],
-      "reflection": {
-        "whatIDid": "ทำตามวิทยากรทีละขั้น สร้าง repository ทดลอง commit และ push ไฟล์ขึ้น GitHub พร้อมถามคำถามเมื่อติดขัด",
-        "whatILearned": "เข้าใจว่า commit แต่ละครั้งคือจุดบันทึกงาน และการเขียน commit message ที่ชัดเจนช่วยให้ย้อนดูงานได้ง่าย",
-        "challenge": "ตอนแรกสับสนระหว่างคำสั่ง add, commit และ push จึงจดลำดับขั้นไว้และลองทำซ้ำหลังจบกิจกรรมจนจำได้",
-        "nextStep": "อยากฝึกทำงานร่วมกับเพื่อนด้วย branch และ pull request"
-      },
-      "evidence": [
-        "https://example.com/git-workshop/certificate"
-      ]
+      "whatIDid": "ทำตามวิทยากรทีละขั้น สร้าง repository ทดลอง commit และ push ไฟล์ขึ้น GitHub พร้อมถามคำถามเมื่อติดขัด",
+      "whatILearned": "เข้าใจว่า commit แต่ละครั้งคือจุดบันทึกงาน และการเขียน commit message ที่ชัดเจนช่วยให้ย้อนดูงานได้ง่าย",
+      "challenge": "ตอนแรกสับสนระหว่างคำสั่ง add, commit และ push จึงจดลำดับขั้นไว้และลองทำซ้ำหลังจบกิจกรรมจนจำได้",
+      "nextStep": "อยากฝึกทำงานร่วมกับเพื่อนด้วย branch และ pull request",
+      "evidence": "https://example.com/git-workshop/certificate"
     }
   ]
 }

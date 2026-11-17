@@ -82,7 +82,7 @@ function showHome() {
 }
 
 // submit form item
-itemForm.addEventListener("submit", function(event) {
+itemForm.addEventListener("submit", async function(event) {
     event.preventDefault();
 
     // Item Validation
@@ -177,9 +177,25 @@ itemForm.addEventListener("submit", function(event) {
         evidence: data.get("evidence").trim()
     };
 
-    current.items.push(item);
-    savePortfolios();
+    try {
+    const formData = new FormData(itemForm);
+    formData.append('portfolioId', current.id); // แนบ ID ของพอร์ตปัจจุบันไปด้วย
+
+    const response = await fetch("api/items.php", {
+        method: "POST",
+        body: formData
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+        throw new Error(result.error || "Could not save item");
+    }
+
+    current.items.push(result);
     renderItem();
     itemForm.reset();
     formContainer.hidden = true;
+} catch (e) {
+    error.textContent = e.message;
+}
 });

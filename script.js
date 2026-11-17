@@ -1,4 +1,4 @@
-const API_BASE_URL = "";
+const API_BASE_URL = "api";
 const form = document.querySelector("#create-portfolio-form");
  
 form.addEventListener("submit", function (event) {
@@ -60,8 +60,8 @@ const PORTFOLIO_STORAGE_KEY = "cs100-power-up-portfolios";
 async function savePortfolios() {
     if (portfolios.length === 0) return;
     try {
-        const response = await fetch(`${API_BASE_URL}/portfolios`, {
-            method: "POST", // หรือใช้ PUT ตามที่ตกลงกับเพื่อน Backend
+        const response = await fetch(`${API_BASE_URL}/portfolios.php`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -75,7 +75,7 @@ async function savePortfolios() {
 
 async function loadPortfolios() {
     try {
-        const response = await fetch(`${API_BASE_URL}/portfolios`);
+        const response = await fetch(`${API_BASE_URL}/portfolios.php`);
         if (!response.ok) throw new Error("Failed to load from server");
         
         const savedPortfolios = await response.json();
