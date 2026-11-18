@@ -177,6 +177,71 @@
         </div>
     </section>
 
+    <section id="json-import" class="container my-4">
+        <div class="card p-3 p-md-4 shadow-sm border-0 rounded-4 bg-white">
+
+            <h5 class="fw-bold mb-3 text-secondary">
+                <i class="bi bi-box-arrow-in-down me-2"></i>Import Portfolio Item JSON
+            </h5>
+
+            <label for="import-json-text" class="form-label fw-semibold">
+                วาง JSON ที่ได้รับจากบูธเพื่อน (หรือเลือกไฟล์ .json) แล้วกด Import
+            </label>
+            <textarea id="import-json-text" class="form-control" rows="6"
+                placeholder='{ "id": "...", "title": "...", "type": "Challenge", ... }'
+                style="font-family: monospace; font-size: 13px;"></textarea>
+
+            <div class="d-flex flex-wrap gap-2 align-items-center mt-2">
+                <input type="file" id="import-json-file" accept=".json,application/json"
+                    class="form-control form-control-sm" style="max-width: 280px;">
+                <button type="button" id="import-btn" class="btn btn-primary btn-sm rounded-3">
+                    <i class="bi bi-box-arrow-in-down me-1"></i>Import
+                </button>
+            </div>
+
+            <div id="import-error" class="form-error mt-2" role="alert"></div>
+            <p id="import-status" class="text-success mt-2 mb-0" role="status"></p>
+
+            <div id="import-review" class="mt-4" hidden>
+                <hr>
+                <h6 class="fw-bold text-secondary mb-3">ตรวจสอบก่อนบันทึก</h6>
+
+                <h5 id="review-title" class="fw-bold mb-1"></h5>
+                <p id="review-meta" class="text-muted small mb-2"></p>
+                <p id="review-description" class="mb-2"></p>
+                <div id="review-skills" class="mb-2"></div>
+                <p class="small mb-3">Evidence: <a id="review-evidence" target="_blank" rel="noopener"></a></p>
+
+                <div class="mb-3">
+                    <label for="import-portfolio" class="form-label fw-semibold">บันทึกลง Portfolio</label>
+                    <select id="import-portfolio" class="form-select"></select>
+                </div>
+
+                <p class="small text-muted mb-2">ตรวจและปรับ Reflection</p>
+                <div class="mb-3">
+                    <label for="import-whatIDid" class="form-label fw-semibold">What I did</label>
+                    <textarea id="import-whatIDid" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="import-whatILearned" class="form-label fw-semibold">What I learned</label>
+                    <textarea id="import-whatILearned" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="import-challenge" class="form-label fw-semibold">Challenge</label>
+                    <textarea id="import-challenge" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="import-nextStep" class="form-label fw-semibold">Next step</label>
+                    <textarea id="import-nextStep" class="form-control" rows="2"></textarea>
+                </div>
+
+                <button type="button" id="import-save-btn" class="btn btn-primary btn-sm rounded-3">Save to Portfolio</button>
+                <button type="button" id="import-cancel-btn" class="btn btn-outline-secondary btn-sm rounded-3 ms-2">Cancel</button>
+            </div>
+
+        </div>
+    </section>
+
     <div class="modal fade" id="createPortfolioModal" tabindex="-1" aria-labelledby="createPortfolioModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -229,6 +294,7 @@
     <script src="script.js"></script>
     <script src="json-generation.js"></script>
     <script src="item.js"></script>
+    <script src="import.js"></script>
 </body>
 
 </html>
