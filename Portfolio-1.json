@@ -22,7 +22,7 @@
         "GitHub Issues",
         "GitHub Pages"
       ],
-      "whatIDid": "วางแผนงานเป็น Issue ย่อย แล้วพัฒนาทีละส่วน ได้แก่ โครงสร้างหน้าเว็บ navbar, About Me, Portfolio Items และ footer จากนั้นทดสอบบนจอ desktop และ mobile ก่อน commit และปิด Issue ทุกครั้ง",
+      "whatIDid": "วางแผนงานเป็น Issue ย่อยแล้วพัฒนาทีละส่วน ได้แก่ โครงสร้างหน้าเว็บ navbar, About Me, Portfolio Items และ footer จากนั้นทดสอบบนจอ desktop และ mobile ก่อน commit และปิด Issue ทุกครั้ง",
       "whatILearned": "เข้าใจว่า Bootstrap ไม่ใช่แค่การใส่ stylesheet แต่ต้องเลือกใช้ grid, flex และ utility class ให้เหมาะกับแต่ละส่วน และได้เรียนรู้ breakpoint ของ Bootstrap",
       "challenge": "การจัด layout ให้ดูดีทั้งบนจอใหญ่และจอเล็ก และการ override สไตล์ของ Bootstrap แก้ไขโดยเปิดดูด้วย DevTools โหมดมือถือ แล้วปรับทีละจุดพร้อมทดสอบซ้ำ",
       "nextStep": "ปรับปรุงเรื่อง accessibility เช่น ความคมชัดของสีและ alt text และเรียนรู้ JavaScript เพิ่มเติมเพื่อทำ filter ผลงานตามประเภทหรือทักษะ",

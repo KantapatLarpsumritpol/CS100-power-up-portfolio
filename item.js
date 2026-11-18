@@ -9,11 +9,11 @@ const cardContainer = document.getElementById("card-container");
 
 let current = null;
 
-const profileBox = document.createElement("div"); //ตัว portfilio
+const profileBox = document.createElement("div"); 
 profileBox.className = "profile-box";
 detailView.insertBefore(profileBox, cardContainer);
 
-// สลับหน้า ข้อมูล portfolio
+
 function openPortfolio(portfolio) {
     current = portfolio;
 
