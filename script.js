@@ -38,6 +38,7 @@ form.addEventListener("submit", function (event) {
  
     // 2. Create a JavaScript object
     const portfolio = {
+        id: "portfolio" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
         displayName: data.get("displayName").trim(),
         whatEnjoy: data.get("whatEnjoy").trim(),
         whatTried: data.get("whatTried").trim(),

@@ -5,31 +5,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     sendJson(readPortfolios());
 }
 
+requirePost();
 
-$input = json_decode(file_get_contents('php://input'), true);
-if (is_array($input)) {
-    writePortfolios($input);
-    sendJson($input, 200);
-    exit;
-}
+$isJson = stripos($_SERVER['CONTENT_TYPE'] ?? '', 'application/json') !== false;
 
-$name = trim($_POST['displayName'] ?? '');
-
-if ($name === '') {
-    sendJson(['error' => 'Display name is required'], 400);
+if ($isJson) {
+    $raw = file_get_contents('php://input');
+    if (strlen($raw) > MAX_JSON_BYTES) {
+        sendJson(['error' => 'Data is too large'], 413);
+    }
+    $input = json_decode($raw, true);
+    $problem = portfolioListProblem($input);
+    if ($problem !== null) {
+        fail($problem);
+    }
+    $clean = array_map('cleanPortfolio', $input);
+    lockData();
+    writePortfolios($clean);
+    sendJson($clean, 200);
 }
 
 $portfolio = [
     'id'          => uniqid('p'),
-    'displayName' => $name,
-    'whatEnjoy'   => trim($_POST['whatEnjoy'] ?? ''),    
-    'whatTried'   => trim($_POST['whatTried'] ?? ''),    
-    'whatCurious' => trim($_POST['whatCurious'] ?? ''), 
+    'displayName' => postText('displayName'),
+    'whatEnjoy'   => postText('whatEnjoy'),
+    'whatTried'   => postText('whatTried'),
+    'whatCurious' => postText('whatCurious'),
     'items'       => [],
 ];
+$problem = portfolioProblem($portfolio);
+if ($problem !== null) {
+    fail($problem);
+}
 
 $portfolios = readPortfolios();
-$portfolios[] = $portfolio;          
+$portfolios[] = $portfolio;
 writePortfolios($portfolios);
 
 sendJson($portfolio, 201);
