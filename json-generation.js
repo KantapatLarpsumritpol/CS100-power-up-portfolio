@@ -1,16 +1,16 @@
 const CHALLENGE_CONFIG = {
-    challengeName: "ชื่อ Challenge ของกลุ่ม",
-    groupName: "ชื่อกลุ่ม",
+    challengeName: "โยนบอลแยก syntax",
+    groupName: "16",
     role: "Participant",
-    description: "อธิบายสั้นๆ ว่า Challenge นี้ให้ทำอะไร",
-    skills: ["Problem Solving", "Teamwork"],
+    description: "โยนลูกบอล 7 ลูกลงถังให้ถูกต้อง โดย 6 ลูกมี syntax ติดไว้ และอีก 1 ลูกผู้เล่นต้องคิด syntax ขึ้นมาเอง ทำให้ครบภายใน 10 นาที",
+    skills: ["Syntax Recognition", "Programming Fundamentals", "Time Management"],
     reflection: {
-        whatIDid: "เข้าร่วมและทำ Challenge สำเร็จ",
-        whatILearned: "ได้ฝึกทักษะจากการทำ Challenge",
-        challenge: "แก้ปัญหาหน้างานร่วมกับทีม",
-        nextStep: "นำทักษะที่ได้ไปต่อยอดในงานอื่น"
+        whatIDid: "เข้าร่วม Challenge โยนบอลแยก syntax และทำสำเร็จภายในเวลาที่กำหนด",
+        whatILearned: "ได้ทบทวนการแยกประเภทของ syntax และฝึกคิด syntax ขึ้นมาเอง",
+        challenge: "ต้องแยก syntax ให้ถูกภายใต้เวลาจำกัด 10 นาที",
+        nextStep: "นำความรู้เรื่อง syntax ไปใช้เขียนโปรแกรมให้แม่นยำขึ้น"
     },
-    evidence: ["https://example.com/evidence"]
+    evidence: ["https://drive.google.com/drive/folders/1GhxjfbB3IDQEpI_NZPf0Em1zM4qylkxv?usp=sharing"]
 };
 
 function generateItemId() {
