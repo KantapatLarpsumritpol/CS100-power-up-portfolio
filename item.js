@@ -10,7 +10,7 @@ const cardContainer = document.getElementById("card-container");
 let current = null;
 
 const profileBox = document.createElement("div"); 
-profileBox.className = "profile-box";
+profileBox.className = "profile-box position-relative";
 detailView.insertBefore(profileBox, cardContainer);
 
 
@@ -18,7 +18,27 @@ function openPortfolio(portfolio) {
     current = portfolio;
 
     profileBox.innerHTML = "";
-    addText(profileBox, "h3", portfolio.displayName, "fw-bold mb-2");
+    // Portfolio Header
+    const header = document.createElement("div");
+    header.className = "d-flex align-items-center";
+
+    const name = document.createElement("h3");
+    name.className = "fw-bold mb-2";
+    name.textContent = portfolio.displayName;
+
+    // Export Button
+    const exportBtn = document.createElement("button");
+    exportBtn.className = "export-button btn btn-outline-primary btn-sm position-absolute";
+    exportBtn.textContent = "Export";
+
+    exportBtn.addEventListener("click", function(event) {
+        event.stopPropagation();
+        exportPortfolio(portfolio);
+    });
+
+    header.appendChild(name);
+    header.appendChild(exportBtn);
+    profileBox.appendChild(header);
     addText(profileBox, "p", "What I Enjoy: " + portfolio.whatEnjoy, "mb-1 small");
     addText(profileBox, "p", "What I've Tried: " + portfolio.whatTried, "mb-1 small");
     addText(profileBox, "p", "What I'm Curious About: " + portfolio.whatCurious, "mb-0 small");

@@ -93,6 +93,51 @@ async function loadPortfolios() {
     }
 }
 
+// ---------- Export Portfolio ----------
+
+// GET: ask the server for all Portfolios
+async function exportPortfolio(portfolio) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/portfolios.php`);
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || 'Could not retrieve Portfolio from server');
+        }
+
+        // Find the Portfolio to export
+        const currentPortfolio = result.find(p => p.id === portfolio.id);
+
+        if (!currentPortfolio) {
+            throw new Error('Portfolio not found on server');
+        }
+
+        // Convert Portfolio to JSON
+        // null,2 is format for JSON, so it's easy to read
+        const json = JSON.stringify(currentPortfolio, null, 2);
+
+        // Create a downloadable file
+        const blob = new Blob([json], {
+            type: "application/json"
+        });
+
+        // Create Temporary URL for download
+        const url = URL.createObjectURL(blob);
+
+        // Download the JSON file
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "my-portfolio.json"; // FIle name is my-portfolio.json
+        link.click();
+
+        URL.revokeObjectURL(url);
+
+    } catch (error) {
+        console.error(error);
+        alert("Unable to export Portfolio.");
+    }
+}
+
 function addPortfolio(portfolio){
     portfolios.push(portfolio); // เก็บ portfolioที่สร้างมา
     savePortfolios();
@@ -101,7 +146,7 @@ function addPortfolio(portfolio){
 
     //card
     const card = document.createElement("div");
-    card.className = "portfolio-card";
+    card.className = "portfolio-card position-relative";
 
     function addText(tag,text) {
         const element = document.createElement(tag);
@@ -109,7 +154,26 @@ function addPortfolio(portfolio){
         card.appendChild(element);
     }
 
-    addText("h1" , portfolio.displayName);
+    // Portfolio Header
+    const header = document.createElement("div");
+    header.className = "d-flex align-items-center";
+
+    const name = document.createElement("h1");
+    name.textContent = portfolio.displayName;
+
+    // Export Button
+    const exportBtn = document.createElement("button");
+    exportBtn.className = "export-button btn btn-outline-primary btn-sm position-absolute";
+    exportBtn.textContent = "Export";
+
+    exportBtn.addEventListener("click", function(event) {
+        event.stopPropagation();
+        exportPortfolio(portfolio);
+    });
+
+    header.appendChild(name);
+    header.appendChild(exportBtn);
+    card.appendChild(header);
     addText("p" , "What I Enjoy: " + portfolio.whatEnjoy);
     addText("p" , "What I've Tried: " + portfolio.whatTried);
     addText("p" , "What I'm Curious About: " + portfolio.whatCurious);

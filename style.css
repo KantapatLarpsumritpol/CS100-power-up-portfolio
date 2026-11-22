@@ -105,7 +105,10 @@ textarea.form-control {
     box-shadow: 0 20px 40px rgba(79, 70, 229, 0.25) !important;
 }
 
-
+.export-button {
+    top: 1rem;
+    right: 1rem;
+}
 
 
 #portfolio-container {
