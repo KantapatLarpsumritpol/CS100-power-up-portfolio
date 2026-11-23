@@ -1,8 +1,5 @@
-// import.js — งานข้อ 6: นำ Portfolio Item JSON จากกลุ่มอื่นเข้า Portfolio
 // ลำดับ: วาง JSON → กด Import (ตรวจ) → เลือก Portfolio + ตรวจ/แก้ Reflection → Save ลง Server
 // ต้องโหลดหลัง script.js และ item.js (ใช้ portfolios, API_BASE_URL, current, openPortfolio)
-// หมายเหตุ: Portfolio ที่สร้างจากฟอร์มใน script.js ยังไม่มี id จึงเติม id ให้ที่นี่ (ensurePortfolioIds)
-//          แล้วเซฟรายการ Portfolio ขึ้น Server ก่อนส่ง Item (ดู handleImportSave)
 
 const IMPORT_MAX_CHARS = 100000;   // JSON ยาวเกินนี้ไม่รับ
 const IMPORT_MAX_TEXT = 2000;      // ข้อความแต่ละช่องยาวได้ไม่เกินนี้
@@ -10,27 +7,6 @@ const IMPORT_CATEGORIES = ["discover", "mix", "levelup"];
 const IMPORT_REFLECTION_KEYS = ["whatIDid", "whatILearned", "challenge", "nextStep"];
 
 let importPendingItem = null;      // Item ที่ผ่านการตรวจแล้ว รอเลือก Portfolio และกด Save
-let importIdsNeedSave = false;     // เติม id ให้ Portfolio ใน memory แล้ว แต่ Server ยังไม่รู้
-
-// เติม id ให้ Portfolio ที่ยังไม่มี (items.php หา Portfolio จาก id)
-function ensurePortfolioIds() {
-    portfolios.forEach(function (p) {
-        if (!p.id) {
-            p.id = "portfolio" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-            importIdsNeedSave = true;
-        }
-    });
-}
-
-// เซฟรายการ Portfolio ทั้งหมดขึ้น Server (เหมือน savePortfolios ใน script.js แต่ throw error ถ้าเซฟไม่สำเร็จ)
-async function importSavePortfolios() {
-    const response = await fetch(API_BASE_URL + "/portfolios.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(portfolios)
-    });
-    if (!response.ok) throw new Error("เซฟ Portfolio ขึ้น Server ไม่สำเร็จ");
-}
 
 // ---------- ส่วนที่ 1: ตรวจ JSON (ไม่ยุ่งกับหน้าเว็บ) ----------
 
@@ -80,7 +56,7 @@ function parseImportedItem(text) {
     const notes = [];
 
     // ข้อความหลัก
-    [["id", 64], ["title", 200], ["type", 100], ["role", 200], ["description", IMPORT_MAX_TEXT]].forEach(function (pair) {
+    [["id", 64], ["title", 100], ["type", 50], ["role", 50], ["description", IMPORT_MAX_TEXT]].forEach(function (pair) {
         const key = pair[0];
         if (!importIsText(data[key])) errors.push('field "' + key + '" ต้องเป็นข้อความและไม่ว่าง');
         else if (data[key].trim().length > pair[1]) errors.push('field "' + key + '" ยาวเกิน ' + pair[1] + " ตัวอักษร");
@@ -91,9 +67,9 @@ function parseImportedItem(text) {
     if (!importIsRealDate(data.date)) errors.push('field "date" ต้องเป็นวันที่รูปแบบ YYYY-MM-DD ที่มีอยู่จริง');
 
     // skills
-    if (!Array.isArray(data.skills) || data.skills.length < 1 || data.skills.length > 20 ||
-        !data.skills.every(function (s) { return importIsText(s) && s.trim().length <= 100; })) {
-        errors.push('field "skills" ต้องเป็น array ของข้อความ 1-20 รายการ');
+    if (!Array.isArray(data.skills) || data.skills.length < 1 || data.skills.length > 10 ||
+        !data.skills.every(function (s) { return importIsText(s) && s.trim().length <= 50; })) {
+        errors.push('field "skills" ต้องเป็น array ของข้อความ 1-10 รายการ (แต่ละอันไม่เกิน 50 ตัวอักษร)');
     }
 
     // reflection: อยู่ใน data.reflection (Contract) หรืออยู่ระดับบน (flat)
@@ -115,7 +91,7 @@ function parseImportedItem(text) {
     let urls = data.evidence;
     if (typeof urls === "string") urls = [urls];
     if (!Array.isArray(urls) || urls.length < 1 || !urls.every(importIsHttpUrl) ||
-        urls.some(function (u) { return u.trim().length > IMPORT_MAX_TEXT; })) {
+        urls.some(function (u) { return u.trim().length > 500; })) {
         errors.push('field "evidence" ต้องเป็น URL (http/https) อย่างน้อย 1 ลิงก์');
     }
 
@@ -248,7 +224,6 @@ function handleImportClick() {
         setImportErrors(result.errors);
         return;
     }
-    ensurePortfolioIds();
     if (!portfolios.some(function (p) { return p.id; })) {
         setImportErrors(["ยังไม่มี Portfolio ให้เลือก กรุณาสร้าง Portfolio ก่อน แล้วค่อย Import"]);
         return;
@@ -294,19 +269,30 @@ async function handleImportSave() {
     const saveBtn = document.querySelector("#import-save-btn");
     saveBtn.disabled = true;           // กันกดซ้ำระหว่างรอ Server
     try {
-        if (importIdsNeedSave) {
-            await importSavePortfolios();   // ให้ Server รู้จัก id ของ Portfolio ก่อน
-            importIdsNeedSave = false;
-        }
         const response = await fetch(API_BASE_URL + "/items.php", { method: "POST", body: formData });
-        const result = await response.json().catch(function () { return {}; });
-        if (!response.ok) throw new Error(result.error || "Could not save item");
+        const raw = await response.text();     // อ่านเป็นข้อความก่อน เผื่อ Server ไม่ได้ตอบเป็น JSON
+        let result = null;
+        try { result = JSON.parse(raw); } catch (e) { result = null; }
+
+        if (!response.ok) {
+            throw new Error((result && result.error) || "Server ตอบ HTTP " + response.status + ": " + raw.slice(0, 200));
+        }
+        // Server ต้องตอบกลับเป็น Item ที่บันทึกแล้ว ถ้าไม่ใช่ แปลว่าคำขอไม่ได้ถึง items.php ที่ถูกต้อง
+        // (เช่น PHP ไม่ทำงาน หรือ Server ใช้ items.php คนละเวอร์ชัน) ห้ามถือว่าสำเร็จ
+        if (!result || typeof result !== "object" || Array.isArray(result) ||
+            typeof result.id !== "string" || !Array.isArray(result.skills)) {
+            throw new Error("Server ตอบกลับไม่ใช่ Item ที่บันทึกแล้ว (HTTP " + response.status + "): " + raw.slice(0, 200));
+        }
 
         if (!Array.isArray(target.items)) target.items = [];
         target.items.push(result);
         document.querySelector("#import-json-text").value = "";
         clearImportReview();
-        setImportStatus('Import สำเร็จ: บันทึก "' + result.title + '" ลงใน ' + target.displayName + " แล้ว");
+        let message = 'Import สำเร็จ: บันทึก "' + result.title + '" ลงใน ' + target.displayName + " แล้ว";
+        if (result.id !== item.id) {
+            message += " (คำเตือน: Server ไม่ได้ใช้ id เดิมของ Item นี้ items.php น่าจะยังเป็นเวอร์ชันเก่า ทำให้กัน Import ซ้ำไม่ได้)";
+        }
+        setImportStatus(message);
         openPortfolio(target);         // เปิดดูผลทันที
         document.querySelector("#detail-view").scrollIntoView({ behavior: "smooth" });
     } catch (e) {
