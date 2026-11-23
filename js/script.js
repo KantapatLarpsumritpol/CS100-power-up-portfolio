@@ -1,7 +1,7 @@
 const API_BASE_URL = "api";
 const form = document.querySelector("#create-portfolio-form");
  
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", async function (event) {
     event.preventDefault();
     
     // Profile Validation
@@ -33,45 +33,30 @@ form.addEventListener("submit", function (event) {
 
     error.textContent = "";
 
-    // 1. Read values from the HTML form
-    const data = new FormData(form);
- 
-    // 2. Create a JavaScript object
-    const portfolio = {
-        id: "portfolio" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-        displayName: data.get("displayName").trim(),
-        whatEnjoy: data.get("whatEnjoy").trim(),
-        whatTried: data.get("whatTried").trim(),
-        whatCurious: data.get("whatCurious").trim(),
-        items: []   // Portfolio Items will be pushed in here later
-    };
-
-    addPortfolio(portfolio);
-    form.reset();
-    bootstrap.Modal.getOrCreateInstance(document.getElementById("createPortfolioModal")).hide();
-
+    try {
+        const saved = await createPortfolioOnServer(new FormData(form));
+        addPortfolio(saved);
+        form.reset();
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("createPortfolioModal")).hide();
+    } catch (e) {
+        error.textContent = e.message;
+    }
 });
 
 
 
 const portfolios = []; 
 
-const PORTFOLIO_STORAGE_KEY = "cs100-power-up-portfolios";
-
-async function savePortfolios() {
-    if (portfolios.length === 0) return;
-    try {
-        const response = await fetch(`${API_BASE_URL}/portfolios.php`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(portfolios)
-        });
-        if (!response.ok) throw new Error("Failed to save to server");
-    } catch (error) {
-        console.warn("Unable to save portfolios to AWS server.", error);
+async function createPortfolioOnServer(formData) {
+    const response = await fetch(`${API_BASE_URL}/portfolios.php`, {
+        method: "POST",
+        body: formData
+    });
+    const result = await response.json().catch(function () { return {}; });
+    if (!response.ok) {
+        throw new Error(result.error || ("บันทึกไม่สำเร็จ (HTTP " + response.status + ")"));
     }
+    return result;
 }
 
 async function loadPortfolios() {
@@ -140,7 +125,6 @@ async function exportPortfolio(portfolio) {
 
 function addPortfolio(portfolio){
     portfolios.push(portfolio); // เก็บ portfolioที่สร้างมา
-    savePortfolios();
 
     const list = document.getElementById("portfolio-list");
 
